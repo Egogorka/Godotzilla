@@ -34,6 +34,7 @@ limit_right = 780
 drag_vertical_enabled = true
 drag_top_margin = 0.05
 drag_bottom_margin = 0.05
+editor_draw_limits = true
 
 [node name="LevelLayout" type="Node2D" parent="." index="2"]
 
