@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 		State.MOVING_LEFT:
 			if velocity.x > 0:
 				state = State.STRUCK
+				$Hurt.play()
 				cooldown = 20;
 				animation_player.play("RESET");
 

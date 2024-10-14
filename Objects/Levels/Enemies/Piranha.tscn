@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cre0xwt6m3waj"]
+[gd_scene load_steps=8 format=3 uid="uid://cre0xwt6m3waj"]
 
 [ext_resource type="PackedScene" uid="uid://bvoxqi1x6lk52" path="res://Objects/Levels/Enemies/BaseEnemy.tscn" id="1_e8rmq"]
 [ext_resource type="Script" path="res://Objects/Levels/Enemies/Piranha.gd" id="2_flalv"]
 [ext_resource type="Texture2D" uid="uid://b2hoylha3pnu6" path="res://Sprites/Objects/Enemies/Piranha.png" id="3_h04oy"]
+[ext_resource type="AudioStream" uid="uid://dcy2jbwfd2no" path="res://Audio/SFX/CharHurt.wav" id="4_s20sy"]
 
 [sub_resource type="Animation" id="Animation_m62yt"]
 length = 0.001
@@ -66,5 +67,9 @@ root_node = NodePath("../Sprite")
 libraries = {
 "": SubResource("AnimationLibrary_lcmgl")
 }
+
+[node name="Hurt" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource("4_s20sy")
+bus = &"SFX"
 
 [connection signal="attacked" from="AttackComponent" to="." method="_on_attack_component_attacked"]
