@@ -20,6 +20,8 @@ func state_init() -> void:
 			walk_frame_speed = 9
 			# # You can change the jumping speed for your character like this
 			# jump_speed = -1 * 60
+		PlayerCharacter.Type.NOTBARAGON:
+			walk_frame_speed = 5
 
 func _process(delta: float) -> void:
 	move(delta)
@@ -34,6 +36,8 @@ func _process(delta: float) -> void:
 			if parent.inputs_pressed[PlayerCharacter.Inputs.START] \
 				and parent.power.value >= 6 * 8:
 				parent.use_attack(PlayerCharacter.Attack.HEAT_BEAM)
+		PlayerCharacter.Type.NOTBARAGON:
+			common_ground_attacks()
 	
 func common_ground_attacks() -> void:
 	if parent.inputs_pressed[PlayerCharacter.Inputs.A]:

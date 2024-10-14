@@ -6,6 +6,7 @@ extends CharacterBody2D
 enum Type {
 	GODZILLA,
 	MOTHRA,
+	NOTBARAGON,
 }
 
 # States in "States" node of the player should be
@@ -36,11 +37,13 @@ enum Attack {
 const CHARACTER_NAMES: Array[String] = [
 	"Godzilla",
 	"Mothra",
+	"Not-Baragon"
 ]
 
 const BaseBarCount: Array[int] = [
 	6, # Godzilla
 	8, # Mothra
+	10, # Not-Baragon
 ]
 
 @export var character := PlayerCharacter.Type.GODZILLA
@@ -137,6 +140,20 @@ func _ready() -> void:
 			if is_player and enable_intro:
 				position.x = -37
 			
+		PlayerCharacter.Type.NOTBARAGON:
+			# null here means the game shouldn't load a new skin as it's already loaded
+			change_skin(load("res://Objects/Characters/NotBaragon.tscn").instantiate())
+			set_collision(Vector2(20, 56), Vector2(0, -1))
+			
+			get_sfx("Step").stream = load("res://Audio/SFX/GodzillaStep.wav")
+			get_sfx("Roar").stream = load("res://Audio/SFX/GodzillaRoar.wav")
+			move_state = State.WALK
+			
+			# We set the character-specific position so when the character
+			# walks in a sudden walking animation frame change won't happen
+			# (walk_frame is set to 0 when the player gets control)
+			if is_player and enable_intro:
+				position.x = -35
 	# Setup for all characters
 	direction = direction
 	body = $Skin/Body
