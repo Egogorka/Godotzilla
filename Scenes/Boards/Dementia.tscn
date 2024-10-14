@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=4 uid="uid://dsuwqsr0sjtio"]
+
+[ext_resource type="PackedScene" uid="uid://d2do8ilhab482" path="res://Scenes/Boards/BaseBoard.tscn" id="1_gb8d8"]
+[ext_resource type="Texture2D" uid="uid://brua3ciu64a82" path="res://Sprites/Levels/Dementia/board.png" id="2_mtveo"]
+[ext_resource type="AudioStream" uid="uid://big2ic4xntk4r" path="res://Audio/Soundtrack/Dementia.mp3" id="2_y5gya"]
+[ext_resource type="PackedScene" uid="uid://cavxehselt3he" path="res://Objects/Boards/Piece.tscn" id="3_85013"]
+[ext_resource type="PackedScene" uid="uid://dhm8bcemuwqfo" path="res://Scenes/Levels/Wilderness.tscn" id="4_oxeqv"]
+[ext_resource type="PackedScene" uid="uid://h8ws8mmbngr8" path="res://Scenes/Levels/GreenMountains.tscn" id="5_go2be"]
+
+[node name="Board" instance=ExtResource("1_gb8d8")]
+board_name = "Dementia"
+music = ExtResource("2_y5gya")
+tileset = ExtResource("2_mtveo")
+levels = Array[PackedScene]([ExtResource("4_oxeqv"), ExtResource("4_oxeqv"), ExtResource("5_go2be")])
+
+[node name="Board Icons" parent="Board" index="1"]
+tile_map_data = PackedByteArray("AAABAAIAAQAAAAAAAAACAAEAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQACAAAAAAABAAMAAQABAAAAAAAEAAEAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAAEAAIAAQAAAAAAAAADAAMAAQABAAAAAAAEAAMAAQACAAAAAAADAAQAAQACAAAAAAACAAQAAQACAAAAAAABAAQAAQACAAAAAAAFAAIAAQAAAAAAAAAFAAQAAQACAAAAAAAEAAQAAQACAAAAAAADAAUAAQACAAAAAAAFAAMAAQABAAAAAAA=")
+
+[node name="Godzilla" parent="Board/Board Icons/Board Pieces" index="0"]
+position = Vector2(114, 172)
+
+[node name="Mothra" parent="Board/Board Icons/Board Pieces" index="1" instance=ExtResource("3_85013")]
+position = Vector2(83, 151)
+region_rect = Rect2(0, 96, 48, 48)
+piece_character = 1
+
+[node name="Selector" parent="Board/Board Icons" index="1"]
+position = Vector2(112, 169)
+
+[node name="Camera2D" parent="Board/Board Icons/Selector" index="0"]
+position = Vector2(59.0769, 65.5385)

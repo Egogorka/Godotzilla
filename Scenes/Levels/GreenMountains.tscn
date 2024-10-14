@@ -1,0 +1,87 @@
+[gd_scene load_steps=9 format=3 uid="uid://h8ws8mmbngr8"]
+
+[ext_resource type="PackedScene" uid="uid://jnprrhsi16ey" path="res://Scenes/Levels/BaseLevel.tscn" id="1_2c7n7"]
+[ext_resource type="Texture2D" uid="uid://cxx4wqrtlyxnv" path="res://Sprites/Levels/Dementia/mountain_range.png" id="2_588b8"]
+[ext_resource type="Texture2D" uid="uid://d1j0837c1yik8" path="res://Sprites/Levels/Dementia/floor.png" id="2_fi3l5"]
+[ext_resource type="AudioStream" uid="uid://du1eb3g8go8hb" path="res://Audio/Soundtrack/BlueMountains2019NES.mp3" id="2_xctfs"]
+[ext_resource type="PackedScene" uid="uid://c5a2ehxjg02tp" path="res://Objects/Levels/Water.tscn" id="4_mw4s5"]
+[ext_resource type="PackedScene" uid="uid://cre0xwt6m3waj" path="res://Objects/Levels/Enemies/Piranha.tscn" id="5_2q0m6"]
+[ext_resource type="Texture2D" uid="uid://w68oejhb7rr4" path="res://Sprites/Levels/Dementia/floor_bottom.png" id="6_08m0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpv3c"]
+size = Vector2(501, 128)
+
+[node name="Level" instance=ExtResource("1_2c7n7")]
+music = ExtResource("2_xctfs")
+
+[node name="Parallax2D" type="Parallax2D" parent="Background" index="0"]
+scroll_scale = Vector2(0.7, 1)
+repeat_times = 3
+
+[node name="TextureRect" type="TextureRect" parent="Background/Parallax2D" index="0"]
+offset_left = -186.0
+offset_top = 66.0
+offset_right = 1518.0
+offset_bottom = 170.0
+texture = ExtResource("2_588b8")
+stretch_mode = 1
+
+[node name="Water" parent="Background" index="1" instance=ExtResource("4_mw4s5")]
+offset_left = -79.0
+offset_top = 176.0
+offset_right = 1850.0
+offset_bottom = 418.0
+
+[node name="Camera" parent="." index="1"]
+position = Vector2(121, 102)
+limit_right = 1500
+limit_bottom = 336
+drag_vertical_enabled = true
+drag_bottom_margin = 0.27
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Floor" parent="." index="2"]
+offset_top = 304.0
+offset_bottom = 368.0
+size_flags_horizontal = 0
+texture = ExtResource("2_fi3l5")
+
+[node name="Player" parent="." index="3"]
+position = Vector2(37, 146)
+
+[node name="Ground" type="TextureRect" parent="." index="5"]
+offset_top = 176.0
+offset_right = 400.0
+offset_bottom = 240.0
+texture = ExtResource("2_fi3l5")
+stretch_mode = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground" index="0"]
+position = Vector2(1, 1)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/StaticBody2D" index="0"]
+position = Vector2(149.5, 63)
+shape = SubResource("RectangleShape2D_cpv3c")
+
+[node name="TextureRect" type="TextureRect" parent="Ground" index="1"]
+z_index = -1
+layout_mode = 0
+offset_top = 64.0
+offset_right = 400.0
+offset_bottom = 128.0
+texture = ExtResource("6_08m0w")
+stretch_mode = 1
+
+[node name="Piranha" parent="." index="6" instance=ExtResource("5_2q0m6")]
+position = Vector2(1189, 233)
+
+[node name="Piranha2" parent="." index="7" instance=ExtResource("5_2q0m6")]
+position = Vector2(1239, 260)
+
+[node name="Piranha3" parent="." index="8" instance=ExtResource("5_2q0m6")]
+position = Vector2(1267, 229)
+
+[node name="Piranha4" parent="." index="9" instance=ExtResource("5_2q0m6")]
+position = Vector2(1011, 243)
