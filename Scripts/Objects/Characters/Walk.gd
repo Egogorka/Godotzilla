@@ -21,7 +21,7 @@ func state_init() -> void:
 			# # You can change the jumping speed for your character like this
 			# jump_speed = -1 * 60
 		PlayerCharacter.Type.NOTBARAGON:
-			walk_frame_speed = 5
+			walk_frame_speed = 6
 
 func _process(delta: float) -> void:
 	move(delta)

@@ -1,6 +1,7 @@
-[gd_scene load_steps=39 format=3 uid="uid://dtk0dcklkpwxb"]
+[gd_scene load_steps=47 format=3 uid="uid://dtk0dcklkpwxb"]
 
 [ext_resource type="Texture2D" uid="uid://dv3tdalrixgvl" path="res://Sprites/Characters/NotBaragon/backleg.png" id="1_yxolj"]
+[ext_resource type="Texture2D" uid="uid://cqahti78kkf2e" path="res://Sprites/Characters/NotBaragon/gun.png" id="2_i76ql"]
 [ext_resource type="Texture2D" uid="uid://dwlc4g1fp1l8d" path="res://Sprites/Characters/NotBaragon/body.png" id="2_qx3jr"]
 [ext_resource type="Texture2D" uid="uid://chqesfq7c21hc" path="res://Sprites/Characters/NotBaragon/frontleg.png" id="3_7578p"]
 [ext_resource type="Texture2D" uid="uid://drovpkqswysns" path="res://Sprites/Characters/NotBaragon/head.png" id="4_m2eam"]
@@ -115,13 +116,35 @@ animations = [{
 "texture": SubResource("AtlasTexture_68rf2")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hybkx")
+"texture": SubResource("AtlasTexture_68rf2")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_hybkx")
 }],
 "loop": true,
 "name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ephe"]
+atlas = ExtResource("2_i76ql")
+region = Rect2(0, 0, 73, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2mdk"]
+atlas = ExtResource("2_i76ql")
+region = Rect2(0, 22, 73, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fkyxh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ephe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2mdk")
+}],
+"loop": true,
+"name": &"default",
 "speed": 5.0
 }]
 
@@ -433,6 +456,42 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Gun:frame")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Gun:offset")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Gun:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3uxcw"]
 resource_name = "Walk"
@@ -674,10 +733,75 @@ tracks/7/keys = {
 "values": [Vector2(0, 0), Vector2(-4, 0), Vector2(1, 0), Vector2(2, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_8vsbo"]
+resource_name = "Gun"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0125, 0.0375),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.025, 0.05),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gyfj7"]
+resource_name = "PullGun"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BackLeg:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Kick"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BackLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_cqi0v"]
+resource_name = "BreathOut"
+
+[sub_resource type="Animation" id="Animation_l2sig"]
+resource_name = "Breath"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m5kek"]
 _data = {
+"BreathIn": SubResource("Animation_l2sig"),
+"BreathOut": SubResource("Animation_cqi0v"),
+"Gun": SubResource("Animation_8vsbo"),
 "Kick1": SubResource("Animation_7giy0"),
 "Kick2": SubResource("Animation_cu7yj"),
+"PullGun": SubResource("Animation_gyfj7"),
 "RESET": SubResource("Animation_on3ft"),
 "Walk": SubResource("Animation_3uxcw")
 }
@@ -692,6 +816,11 @@ sprite_frames = SubResource("SpriteFrames_5yp8q")
 animation = &"Walk"
 frame = 4
 
+[node name="Gun" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(29, 35)
+sprite_frames = SubResource("SpriteFrames_fkyxh")
+
 [node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lp8b5")
 animation = &"Walk"
@@ -700,7 +829,6 @@ animation = &"Walk"
 position = Vector2(-4, 44)
 sprite_frames = SubResource("SpriteFrames_vbsmy")
 animation = &"Walk"
-offset = Vector2(-2, 0)
 
 [node name="Head" type="AnimatedSprite2D" parent="."]
 position = Vector2(42, -30)
